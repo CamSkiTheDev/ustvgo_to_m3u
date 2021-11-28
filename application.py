@@ -32,7 +32,7 @@ def getChannel():
     base = pl.split('playlist.m3u8')[0]
     head = '#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=818009,RESOLUTION=640x360,CODECS="avc1.64001f,mp4a.40.2"\n'
     m3u = requests.get(pl).text.strip().split('\n')[-1]
-    return head + base + pl
+    return head + m3u
 
 if __name__ == '__main__':
     app.run('0.0.0.0', PORT)
