@@ -21,7 +21,7 @@ def playlist_generator():
             code = line[1].strip()
             logo = line[2].strip()
             playlist += f'\n#EXTINF:-1 tvg-id="{code}" group-title="ustvgo" tvg-logo="{logo}", {name}'
-            playlist += f'\nhttp://{SERVER_IP}/channels?id={code}'
+            playlist += f'\nhttps://{SERVER_IP}/channels?id={code}'
     return playlist
 
 @app.route('/channels')
@@ -30,7 +30,7 @@ def getChannel():
     data = {'stream' : code}
     pl = requests.post('https://ustvgo.tv/data.php', data=data).text
     base = pl.split('playlist.m3u8')[0]
-    head = '#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=818009,RESOLUTION=640x360,CODECS="avc1.64001f,mp4a.40.2"\n'
+    head = '#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-STREAM-INF:BANDWIDTH=818009,RESOLUTION=1280x720,CODECS="avc1.64001f,mp4a.40.2"\n'
     m3u = requests.get(pl).text.strip().split('\n')[-1]
     return head + base + m3u
 
