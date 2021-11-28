@@ -2,7 +2,7 @@ import requests
 import os
 from flask import Flask, request
 
-SERVER_IP = '10.10.10.10'   # Edit this line
+SERVER_IP = 'flask-app-tv.herokuapp.com'   # Edit this line
 PORT = 9000
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def playlist_generator():
             code = line[1].strip()
             logo = line[2].strip()
             playlist += f'\n#EXTINF:-1 tvg-id="{code}" group-title="ustvgo" tvg-logo="{logo}", {name}'
-            playlist += f'\nhttp://{SERVER_IP}:{PORT}/channels?id={code}'
+            playlist += f'\nhttp://{SERVER_IP}/channels?id={code}'
     return playlist
 
 @app.route('/channels')
